@@ -1,8 +1,9 @@
-const Blog = ({ title, content, user }) => {
+const Blog = ({ title, content }) => {
+
   return (
-    <article className="max-w-2xl px-6 py-24 mx-auto space-y-12 dark:bg-gray-800 dark:text-gray-50">
+    <article className="max-w-4xl px-6 py-24 mx-auto space-y-12 dark:bg-gray-800 dark:text-gray-50">
       <div className="w-full mx-auto space-y-4 text-center">
-        <h1 className="text-4xl font-bold leading-tight md:text-5xl">Interdum et malesuada fames ac ante ipsum primis in faucibus?</h1>
+        <h1 className="text-4xl font-light leading-tight md:text-5xl">{title}</h1>
         <p className="text-sm dark:text-gray-400">by {" "}
           <a rel="noopener noreferrer" href="#" target="_blank" className="underline dark:text-violet-400">
             <span itemprop="name">Leroy Jenkins</span> {" "}
@@ -11,14 +12,14 @@ const Blog = ({ title, content, user }) => {
         </p>
       </div>
       <div className="dark:text-gray-100">
-        <p>Insert the actual text content here...</p>
+        <p>{content}</p>
       </div>
       <div className="pt-12 border-t dark:border-gray-700">
         <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
           <img src="https://source.unsplash.com/75x75/?portrait" alt="" className="self-center flex-shrink-0 w-24 h-24 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-700" />
           <div className="flex flex-col">
             <h4 className="text-lg font-semibold">Leroy Jenkins</h4>
-            <p className="dark:text-gray-400">Sed non nibh iaculis, posuere diam vitae, consectetur neque. Integer velit ligula, semper sed nisl in, cursus commodo elit. Pellentesque sit amet mi luctus ligula euismod lobortis ultricies et nibh.</p>
+            <p className="dark:text-gray-400">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque, sed?</p>
           </div>
         </div>
         <div className="flex justify-center pt-4 space-x-4 align-center">

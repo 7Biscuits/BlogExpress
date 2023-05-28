@@ -1,16 +1,36 @@
-const CreatePost = () => {
+import { useNavigate } from 'react-router-dom'
+
+const CreatePost = (props) => {
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (!e.target.title.value) return alert('Please enter a title')
+    if (!e.target.content.value) return alert('Please write some content')
+
+    props.newBlog(e.target.title.value, e.target.content.value)
+    navigate('/blog')
+  }
+
   return (
-    <article className="max-w-2xl px-6 py-24 mx-auto space-y-12 dark:bg-gray-800 dark:text-gray-50">
+    <form onSubmit={handleSubmit} className="max-w-2xl px-6 py-24 mx-auto space-y-12 dark:bg-gray-800 dark:text-gray-50">
       <div className="w-full mx-auto space-y-4 text-center">
-        <input className="text-4xl font-extralight leading-tight dark:text-gray-200 bg-slate-700 text-center p-2" placeholder="Heading"></input>
+        <input className="text-4xl font-extralight leading-tight dark:text-gray-200 bg-slate-700 text-center p-2" placeholder="Heading" name="title"></input>
       </div>
       <div className="pt-12 border-t dark:border-gray-700 mx-auto">
         <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
           {/* <img src="https://source.unsplash.com/75x75/?portrait" alt="" className="self-center flex-shrink-0 w-24 h-24 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-700" /> */}
           <div className="flex flex-col">
             {/* <h4 className="text-lg font-semibold">Leroy Jenkins</h4> */}
-            <textarea className="dark:text-gray-200 bg-slate-700 font-extralight p-3 leading-tight" placeholder="Your content goes here..." rows={10} cols={60}></textarea>
+            <textarea className="dark:text-gray-200 bg-slate-700 font-extralight p-3 leading-tight" placeholder="Your content goes here..." rows={10} cols={60} name="content"></textarea>
           </div>
+        </div>
+        <div className="mt-6">
+          <button className="w-24 px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700">
+            Post
+          </button>
         </div>
         <div className="flex justify-center pt-4 space-x-4 align-center">
           <a rel="noopener noreferrer" href="#" aria-label="GitHub" className="p-2 rounded-md dark:text-gray-100 hover:dark:text-violet-400">
@@ -35,7 +55,7 @@ const CreatePost = () => {
           </a>
         </div>
       </div>
-    </article>
+    </form>
   )
 }
 
