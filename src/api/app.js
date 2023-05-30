@@ -2,10 +2,16 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
+const cors = require("cors");
+const dotenv = require("dotenv");
+
+dotenv.config()
 
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/BlogExpress", {
+app.use(express.json(), cors());
+
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     family: 4,
