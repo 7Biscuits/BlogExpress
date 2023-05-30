@@ -1,9 +1,15 @@
-const express = require('express')
+const express = require("express");
+const {
+  signup,
+  signin,
+  signinRequired,
+  profile,
+} = require("../controllers/userController");
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.status(res.statusCode).send('user routes')
-})
+router.route('/auth/signup').post(signup);
+router.route('/auth/signin').post(signin);
+router.route('/tasks').post(signinRequired, profile);
 
-module.exports = router
+module.exports = router;
