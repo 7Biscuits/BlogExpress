@@ -1,4 +1,3 @@
-const mongoose = require("mongoose");
 const jwt = require("jwt");
 const bcrypt = require("bcrypt");
 const User = require("../models/UserModel");
@@ -16,6 +15,31 @@ const signup = (req, res) => {
   });
 };
 
+const signin = (req, res) => {
+  const { username, password } = req.body;
+  User.findOne(
+    {
+      username: username,
+    },
+    (err, user) => {
+      if (err) throw err;
+      if (!user || !user.comparePassword(password))
+        return res
+          .status(res.statusCode)
+          .json({
+            message: "Authentication failed. Invalid username or password",
+          });
+      return res.json({
+        token: jwt.sign(
+          { email: user.email, fullName: user.fullName, _id: user._id },
+          "RESTFULAPIs"
+        ),
+      });
+    }
+  );
+};
+
 module.exports = {
-    signup
-}
+  signup,
+  signin,
+};
