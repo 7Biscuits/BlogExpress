@@ -8,7 +8,7 @@ const signupSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
-const loginSchema = Joi.object({
+const signinSchema = Joi.object({
   username: Joi.string().min(3).required(),
   password: Joi.string().min(6).required(),
 });
@@ -32,7 +32,7 @@ const signup = async (req, res) => {
     if (error)
       return res.status(400).json({ message: error.details[0].message });
     await user.save();
-    res.json({ message: "Signup successful" });
+    res.send("Sign up successfull");
   } catch (err) {
     res.json({ message: err.message });
   }
@@ -48,7 +48,7 @@ const signin = async (req, res) => {
   if (!validPassword)
     return res.status(400).json({ message: "Incorrect Password" });
   try {
-    const { error } = await loginSchema.validateAsync(req.body);
+    const { error } = await signinSchema.validateAsync(req.body);
     if (error) return res.json({ message: error.details[0].message });
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
     res
