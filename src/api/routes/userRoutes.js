@@ -1,12 +1,16 @@
 const express = require("express");
 const {
-  signup,
-  signin,
+  fetchUsers,
+  fetchUser,
+  deleteUsers,
+  deleteUser,
 } = require("../controllers/userController");
 
 const router = express.Router();
 
-router.route('/auth/signup').post(signup);
-router.route('/auth/signin').post(signin);
+router.route('/').get(fetchUsers);
+router.route('/:username').get(fetchUser);
+router.route('/').delete(deleteUsers);
+router.route('/:username').delete(deleteUser);
 
 module.exports = router;
