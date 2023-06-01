@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useState } from "react";
 import Navbar from "./components/Navbar";
-import Login from "./pages/Login";
+import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Blog from "./pages/Blog";
 import Blogs from "./pages/Blogs";
-import { useState } from "react";
 import CreatePost from "./pages/CreatePost";
 import NoPage from "./pages/NoPage";
 
@@ -19,7 +19,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route path="" element={<Login />} />
+            <Route path="" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="blog" element={<Blog title={title} content={content} />} />
             <Route path="posts" element={<Blogs />} />
