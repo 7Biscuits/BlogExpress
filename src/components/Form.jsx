@@ -1,13 +1,23 @@
 import { Link } from "react-router-dom"
 
-const Form = ({ heading, label1, label2, footerText, footerA1, footerA2, redirectLink }) => {
+const Form = ({ heading, label1, label2, footerText, footerA1, footerA2, redirectLink, userInfo }) => {
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if (!e.target.username.value) return alert('Please enter your username')
+        if (!e.target.password.value) return alert('Please enter your password')
+
+        userInfo(e.target.username.value, e.target.password.value)
+    }
+
     return (
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
             <div className="w-full p-6 m-auto bg-gray-900 rounded-md shadow-md max-w-md lg:max-w-xl md:max-w-xl xl:max-w-xl">
                 <h1 className="text-3xl font-semibold text-center text-blue-600">
                     {heading}
                 </h1>
-                <form className="mt-6">
+                <form onSubmit={handleSubmit} className="mt-6">
                     <div className="mb-2">
                         <label
                             for="username"
@@ -17,6 +27,7 @@ const Form = ({ heading, label1, label2, footerText, footerA1, footerA2, redirec
                         </label>
                         <input
                             type="username"
+                            name="username"
                             className="block w-full px-4 py-2 mt-2 text-blue-600 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         />
                     </div>
@@ -29,6 +40,7 @@ const Form = ({ heading, label1, label2, footerText, footerA1, footerA2, redirec
                         </label>
                         <input
                             type="password"
+                            name="password"
                             className="block w-full px-4 py-2 mt-2 text-blue-600 bg-white border rounded-md focus:border-blue-400 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         />
                     </div>
