@@ -4,17 +4,24 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
 
-dotenv.config()
+dotenv.config();
 
 const app = express();
 
-app.use(express.json(), cors());
+app.use(express.json());
+app.use(
+  cors({
+    credentials: true,
+    origin: true,
+  })
+);
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    family: 4,
-  }).then(() => {
+  })
+  .then(() => {
     console.log("Database connected");
   });
 
