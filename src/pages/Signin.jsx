@@ -1,4 +1,6 @@
+import { redirect } from "react-router-dom";
 import Form from "../components/Form"
+// import { session } from "express-session";
 
 const Signin = () => {
 
@@ -8,8 +10,12 @@ const Signin = () => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ username, password })
-    }).then(async response => alert(await response.text()))
+      body: JSON.stringify({ username, password }),
+      credentials: 'include',
+    }).then(async response => {
+      const res = await response.text();
+      alert(res);
+    });
   }
 
   return (
@@ -17,4 +23,4 @@ const Signin = () => {
   )
 }
 
-export default Signin
+export default Signin;
