@@ -1,19 +1,16 @@
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const Joi = require("joi");
 const User = require("../models/UserModel");
 
-const signupSchema = Joi.object({
-  username: Joi.string().min(3).required(),
-  password: Joi.string().min(6).required(),
-});
-
-const signinSchema = Joi.object({
+const authSchema = Joi.object({
   username: Joi.string().min(3).required(),
   password: Joi.string().min(6).required(),
 });
 
 const signup = async (req, res) => {
+  const { error } = await authSchema.validateAsync(req.body);
+  if (error) return res.send(error.details[0].message);
+
   const { username, password } = req.body;
 
   if (await User.findOne({ username: username }))
@@ -28,35 +25,22 @@ const signup = async (req, res) => {
   });
 
   try {
-    const { error } = await signupSchema.validateAsync(req.body);
-    if (error)
-      return res.status(400).send(error.details[0].message);
-    await user.save();
-    res.send("Sign up successfull");
+    await user.save().then(() => res.send("Sign up successful"));
   } catch (err) {
     res.send(err.message);
   }
 };
 
-const signin = async (req, res) => {
-  const { username, password } = req.body;
-
-  const user = await User.findOne({ username: username });
-  if (!user) return res.status(400).send("User not found");
-
-  const validPassword = await bcrypt.compare(password, user.password);
-  if (!validPassword) return res.send("Incorrect Password");
-  try {
-    const { error } = await signinSchema.validateAsync(req.body);
-    if (error) return res.send(error.details[0].message);
-    const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-    res.header("auth-token", token).send("Sign in successful");
-  } catch (err) {
-    res.send(err.message);
-  }
+const signout = (req, res, next) => {
+  req.logout((err) => {
+    if (err) return next(err);
+    res.clearCookie("userid");
+    res.send("Sign out successful");
+  });
 };
 
 module.exports = {
   signup,
-  signin,
+  authSchema,
+  signout,
 };
