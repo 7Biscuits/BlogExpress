@@ -1,5 +1,22 @@
 const mongoose = require("mongoose");
 
+const months = [
+  "jan",
+  "feb",
+  "mar",
+  "apr",
+  "may",
+  "jun",
+  "jul",
+  "aug",
+  "sep",
+  "oct",
+  "nov",
+  "dec",
+];
+
+const date = new Date();
+
 const UserSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -15,9 +32,11 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   date: {
-    type: Date,
-    default: Date.now(),
-  }
+    type: String,
+    default: `${date.getDate()} ${
+      months[date.getMonth()]
+    } ${date.getFullYear()}`,
+  },
 });
 
 module.exports = mongoose.model("User", UserSchema);
