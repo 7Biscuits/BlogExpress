@@ -10,8 +10,8 @@ const fetchUsers = async (req, res) => {
 
 const fetchUser = async (req, res) => {
   try {
-    await User.findOne({ username: req.params.username }).then((user) =>
-      res.json(user)
+    await User.findById({ _id: req.params.id }).then((user) =>
+      res.json({ user: user })
     );
   } catch (err) {
     res.json({ message: err.message });
@@ -20,7 +20,7 @@ const fetchUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    await User.deleteOne({ username: req.params.username }).then(() =>
+    await User.findByIdAndDelete({ _id: req.params.id }).then(() =>
       res.json({ message: "User successfully deleted" })
     );
   } catch (err) {
