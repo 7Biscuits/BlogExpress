@@ -8,9 +8,9 @@ const {
 
 const router = express.Router();
 
-router.route('/').get(fetchUsers);
-router.route('/:username').get(fetchUser);
-router.route('/').delete(deleteUsers);
-router.route('/:username').delete(deleteUser);
+router.route("/").get(fetchUsers);
+router.route("/:userid").get(fetchUser);
+router.route("/").delete(deleteUsers);
+router.route("/:userid").delete(deleteUser);
 
 module.exports = router;
