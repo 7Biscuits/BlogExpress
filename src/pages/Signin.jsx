@@ -1,11 +1,9 @@
-import { redirect } from "react-router-dom";
 import Form from "../components/Form"
-// import { session } from "express-session";
 
 const Signin = () => {
 
   const signin = async (username, password) => {
-    await fetch('http://localhost:8080/auth/signin', {
+    await fetch('http://localhost:8080/auth/signin/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -15,11 +13,14 @@ const Signin = () => {
     }).then(async response => {
       const res = await response.text();
       alert(res);
+      window.location.reload(false);
     });
   }
 
   return (
-    <Form heading={"Sign in"} label1={"Username"} label2={"Password"} footerA1={"Forgot password?"} footerText={"Don't have an account?"} footerA2={"Sign up"} redirectLink={"/signup"} userInfo={(username, password) => signin(username, password)} />
+    <div className="">
+      <Form heading={"Sign in"} text={"Sign in to your account"} fplink={"Forgot password?"} text2={"Don't have an account?"} text3={"Sign up"} link={"/signup"} btnText={"Sign in"} userInfo={(username, password) => signin(username, password)} />
+    </div>
   )
 }
 
