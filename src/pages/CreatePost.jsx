@@ -21,9 +21,7 @@ const CreatePost = (props) => {
       </div>
       <div className="pt-12 border-t dark:border-gray-700 mx-auto">
         <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
-          {/* <img src="https://source.unsplash.com/75x75/?portrait" alt="" className="self-center flex-shrink-0 w-24 h-24 border rounded-full md:justify-self-start dark:bg-gray-500 dark:border-gray-700" /> */}
           <div className="flex flex-col">
-            {/* <h4 className="text-lg font-semibold">Leroy Jenkins</h4> */}
             <textarea className="dark:text-gray-200 bg-slate-700 font-extralight p-3 leading-tight" placeholder="Your content goes here..." rows={10} cols={60} name="content"></textarea>
           </div>
         </div>
