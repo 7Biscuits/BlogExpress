@@ -18,9 +18,7 @@ const Signin = () => {
   }
 
   return (
-    <div className="">
-      <Form heading={"Sign in"} text={"Sign in to your account"} fplink={"Forgot password?"} text2={"Don't have an account?"} text3={"Sign up"} link={"/signup"} btnText={"Sign in"} userInfo={(username, password) => signin(username, password)} />
-    </div>
+    <Form heading={"Sign in"} text={"Sign in to your account"} fplink={"Forgot password?"} text2={"Don't have an account?"} text3={"Sign up"} link={"/signup"} btnText={"Sign in"} userInfo={(username, password) => signin(username, password)} />
   )
 }
 
