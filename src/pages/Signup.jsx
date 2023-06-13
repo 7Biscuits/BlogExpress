@@ -9,11 +9,14 @@ const Signup = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ username, password })
-    }).then(async response => alert(await response.text()));
+    }).then(async response => {
+        alert(await response.text());
+        window.location.reload(false);
+      });
   }
 
   return (
-    <Form heading={"Sign up"} label1={"Username"} label2={"Password"} footerA1={""} footerText={"Already have an account?"} footerA2={"Login"} redirectLink={"/"} userInfo={(username, password) => signup(username, password)} />
+    <Form heading={"Sign up"} text={"Create an account"} btnText={"Sign up"} text2={"Already have an account?"} text3={"Sign in"} link={"/signin"} userInfo={(username, password) => signup(username, password)} />
   )
 }
 
