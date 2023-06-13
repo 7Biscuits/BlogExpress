@@ -8,10 +8,10 @@ const fetchUsers = async (req, res) => {
   }
 };
 
-const fetchUser = async (req, res) => {
+const fetchUser = (req, res) => {
   try {
-    await User.findById({ _id: req.params.id }).then((user) =>
-      res.json({ user: user })
+    User.findById(req.params.userid).then((user) =>
+      res.json(user)
     );
   } catch (err) {
     res.json({ message: err.message });
