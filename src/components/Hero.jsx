@@ -4,7 +4,7 @@ import TypingAnimation from "./TypingAnimation"
 const Hero = () => {
     return (
         <div className="flex flex-col items-center">
-            <div className="font-[700] text-5xl md:text-6xl lg:text-8xl text-center text-transparent animate-text bg-clip-text bg-gradient-to-r from-slate-50 via-purple-400 to-purple-600">BlogExpress</div>
+            <div className="font-[700] text-6xl lg:text-8xl text-center text-transparent animate-text bg-clip-text bg-gradient-to-r from-slate-50 via-purple-400 to-purple-600">BlogExpress</div>
             <div className="my-3">
                 <TypingAnimation string1={"Create and Customize Your Blog"} string2={"Easy Content Creation"} string3={"Engage with Readers"} string4={"Discover and Follow Other Bloggers"} string5={"User-Friendly & Responsive Interface"} />
             </div>
