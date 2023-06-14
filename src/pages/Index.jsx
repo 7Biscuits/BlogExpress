@@ -5,8 +5,10 @@ const Index = () => {
 
   return (
     <>
-      <div className="relative min-h-screen top-52 flex flex-col justify-center">
-        <Hero />
+      <div className="flex flex-col justify-center">
+        <div className="mt-48">
+          <Hero />
+        </div>
         <RecentBlogs />
       </div>
     </>
