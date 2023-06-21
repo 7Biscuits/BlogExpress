@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import Form from "../components/Form"
 
 const Signup = () => {
+
+  const navigate = useNavigate();
 
   const signup = async (username, password) => {
     await fetch('http://localhost:8080/auth/signup', {
@@ -11,7 +14,7 @@ const Signup = () => {
       body: JSON.stringify({ username, password })
     }).then(async response => {
         alert(await response.text());
-        window.location.reload(false);
+        navigate("/signin")
       });
   }
 
