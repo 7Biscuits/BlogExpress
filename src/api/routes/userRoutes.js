@@ -1,7 +1,8 @@
 const express = require("express");
 const {
   fetchUsers,
-  fetchUser,
+  fetchUserByUsername,
+  fetchUserById,
   deleteUsers,
   deleteUser,
 } = require("../controllers/userController");
@@ -9,7 +10,8 @@ const {
 const router = express.Router();
 
 router.route("/").get(fetchUsers);
-router.route("/:userid").get(fetchUser);
+router.route("/id/:userid").get(fetchUserById);
+router.route("/username/:username").get(fetchUserByUsername);
 router.route("/").delete(deleteUsers);
 router.route("/:userid").delete(deleteUser);
 
