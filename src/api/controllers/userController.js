@@ -8,11 +8,19 @@ const fetchUsers = async (req, res) => {
   }
 };
 
-const fetchUser = (req, res) => {
+const fetchUserById = async (req, res) => {
   try {
-    User.findById(req.params.userid).then((user) =>
-      res.json(user)
-    );
+    await User.findById(req.params.userid).then((user) => {
+      res.json(user);
+    });
+  } catch (err) {
+    res.json({ message: err.message });
+  }
+};
+
+const fetchUserByUsername = async (req, res) => {
+  try {
+    await User.findOne({ username: req.params.username }).then((user) => res.json(user));
   } catch (err) {
     res.json({ message: err.message });
   }
@@ -20,7 +28,7 @@ const fetchUser = (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    await User.findByIdAndDelete({ _id: req.params.id }).then(() =>
+    await User.findOneAndDelete(req.params.username).then(() =>
       res.json({ message: "User successfully deleted" })
     );
   } catch (err) {
@@ -40,7 +48,8 @@ const deleteUsers = async (req, res) => {
 
 module.exports = {
   fetchUsers,
-  fetchUser,
+  fetchUserById,
+  fetchUserByUsername,
   deleteUser,
   deleteUsers,
 };
