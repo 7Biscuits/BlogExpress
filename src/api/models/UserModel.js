@@ -31,6 +31,18 @@ const UserSchema = new mongoose.Schema({
     maxlength: 128,
     required: true,
   },
+  posts: {
+    type: Number,
+    default: 0,
+  },
+  followers: {
+    type: Array,
+    default: []
+  },
+  following: {
+    type: Array,
+    default: []
+  },
   date: {
     type: String,
     default: `${date.getDate()} ${
