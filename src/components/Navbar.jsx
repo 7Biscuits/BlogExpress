@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import User from "./User";
 import { Link } from "react-router-dom";
-import Cookies from "universal-cookie"
+import Cookies from "universal-cookie";
+import { fetchUserById } from "../utils/utils"
 
 const Navbar = () => {
 
@@ -12,22 +13,17 @@ const Navbar = () => {
 
     const userId = cookies.get('userid');
 
-    const fetchUser = async () => {
-        await fetch(`http://localhost:8080/users/${userId}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        }).then(async (response) => {
-            const user = await response.json();
-            setUsername(user.username);
-            setIsSignedIn(true);
-        });
-    }
-
     useEffect(() => {
-        if (userId) fetchUser();
+        const fetchUserData = async () => {
+            if (userId) {
+                const user = await fetchUserById(userId);
+                setUsername(user.username);
+                setIsSignedIn(true);
+            }
+        }
+        return () => fetchUserData();
     }, [userId]);
+    
 
     const signout = async () => {
         await fetch('http://localhost:8080/auth/signout', {
