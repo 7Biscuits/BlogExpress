@@ -8,7 +8,7 @@ import Blog from "./pages/Blog";
 import Blogs from "./pages/Blogs";
 import CreatePost from "./pages/CreatePost";
 import Profile from "./pages/Profile";
-import NoPage from "./pages/NoPage";
+import PageNotFound from "./pages/PageNotFound";
 
 const App = () => {
   let [title, setTitle] = useState("");
@@ -42,7 +42,7 @@ const App = () => {
 
             <Route path="/profile/:username" element={<Profile />} />
 
-            <Route path="*" element={<NoPage />} />
+            <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
       </div>
