@@ -8,7 +8,7 @@ const Navbar = () => {
 
     const cookies = new Cookies();
 
-    let [username, setUsername] = useState('null');
+    let [username, setUsername] = useState();
     let [isSignedIn, setIsSignedIn] = useState(false);
 
     const userId = cookies.get('userid');
