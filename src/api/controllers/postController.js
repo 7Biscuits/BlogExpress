@@ -16,7 +16,15 @@ const fetchPosts = async (req, res) => {
   }
 };
 
-const fetchPost = async (req, res) => {
+const fetchPostsByUsername = async (req, res) => {
+  try {
+    await Post.findMany({ username: req.params.username }).then((post) => res.json(post));
+  } catch (err) {
+    res.send(err.message);
+  }
+};
+
+const fetchPostById = async (req, res) => {
   try {
     await Post.findById(req.params.postid).then((post) => res.json(post));
   } catch (err) {
@@ -59,7 +67,8 @@ const deletePost = async (req, res) => {
 
 module.exports = {
   fetchPosts,
-  fetchPost,
+  fetchPostsByUsername,
+  fetchPostById,
   createPost,
   deletePost,
 };
