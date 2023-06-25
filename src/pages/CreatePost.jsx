@@ -17,12 +17,12 @@ const CreatePost = (props) => {
   return (
     <form onSubmit={handleSubmit} className="max-w-2xl px-6 py-24 mx-auto space-y-12 dark:bg-gray-800 dark:text-gray-50">
       <div className="w-full mx-auto space-y-4 text-center">
-        <input className="text-4xl font-extralight leading-tight dark:text-gray-200 bg-slate-700 text-center p-2" placeholder="Heading" name="title"></input>
+        <input className="text-4xl font-extralight leading-tight dark:text-gray-200 bg-opacity-25 backdrop-filter backdrop-blur-lg bg-gray-500 text-center p-2" placeholder="Heading" name="title"></input>
       </div>
       <div className="pt-12 border-t dark:border-gray-700 mx-auto">
         <div className="flex flex-col space-y-4 md:space-y-0 md:space-x-6 md:flex-row">
           <div className="flex flex-col">
-            <textarea className="dark:text-gray-200 bg-slate-700 font-extralight p-3 leading-tight" placeholder="Your content goes here..." rows={10} cols={60} name="content"></textarea>
+            <textarea className="dark:text-gray-200 bg-opacity-25 backdrop-filter backdrop-blur-lg bg-gray-500 font-extralight p-3 leading-tight" placeholder="Your content goes here..." rows={10} cols={60} name="content"></textarea>
           </div>
         </div>
         <div className="mt-6">
