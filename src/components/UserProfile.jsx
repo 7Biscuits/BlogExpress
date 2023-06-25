@@ -1,5 +1,4 @@
 import ProfileStats from "./ProfileStats"
-// import Button from "./Button"
 
 const UserProfile = ({ username, blogs, followers, following }) => {
     return (
